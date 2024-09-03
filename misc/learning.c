@@ -3,6 +3,9 @@
 
 int main(int argc, char *argv[])
 {
-    printf("%d %s", argc, argv[1]);
-    // Scanf requires format specifier just like with printf to tell our C program how the inputted value should be handled (not just always as a char)
+    // C offers logical and shift operattors (operating on bits)
+    printf("%d", 128 & 6);
+    printf("%d", 128 | 6);
+    printf("%d", 128 >> 6);
+    printf("\n %d", 128 << 3);
 }

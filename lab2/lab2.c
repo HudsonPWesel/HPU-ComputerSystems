@@ -76,7 +76,7 @@ void convertBinaryToHex(unsigned char *buffer, size_t fileSize)
 // Function to convert binary data to ASCII and print it
 void convertBinaryToASCII(unsigned char *buffer, size_t fileSize)
 {
-    printf("====================================\n");
+    printf("\n====================================\n");
     printf("ASCII Representation\n");
     printf("====================================\n");
 
@@ -88,6 +88,14 @@ void convertBinaryToASCII(unsigned char *buffer, size_t fileSize)
             printf("\n");
         }
     }
+}
+
+void printMessage(unsigned char *buffer, size_t fileSize)
+{
+
+    printf("\n====================================\n");
+    printf("Final Message\n");
+    printf("====================================\n");
 }
 
 int main(int argc, char *argv[])
@@ -118,6 +126,9 @@ int main(int argc, char *argv[])
 
     // Convert and print the binary data to ASCII
     convertBinaryToASCII(buffer, fileSize);
+
+    // Print final message
+    printMessage(buffer, fileSize);
 
     // Free the allocated memory
     free(buffer);

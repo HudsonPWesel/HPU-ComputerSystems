@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
 
     printf("Before Copy \n %s", copyMyWord);
     strcpy(myword, copyMyWord);
-    printf("After Copy \n %s", copyMyWord);
+    printf("After Copy \n", copyMyWord);
 
-    //printf("Combined Word %s", strcat(combinedString, world));
+    printf("Combined Word %s", strcat(hello, world));
     // combinedString = (hello, world);
 
     printf("Final Output %d %s", i, myword);

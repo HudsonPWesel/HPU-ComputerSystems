@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-    system("clear");
-    printf("%s", "Hi, my name is Hudson");
+    printf("%d %s", argc, argv[1]);
+    // Scanf requires format specifier just like with printf to tell our C program how the inputted value should be handled (not just always as a char)
 }

@@ -130,6 +130,8 @@ int main(int argc, char *argv[])
     // Print final message
     printMessage(buffer, fileSize);
 
+    // Lab extension (Write a program to write inputted text, convert that text to binary format and re-read it from buffer)
+
     // Free the allocated memory
     free(buffer);
     return 0;

@@ -1,6 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdio.h> // Include the header for printf
+
+// Function prototype
+void square(int const *x);
+
+// Function definition
 
 int main(int argc, char *argv[])
 {
@@ -21,12 +27,23 @@ int main(int argc, char *argv[])
         printf("EIOFJWJFE");
     }
 
-    printf("Before Copy \n %s", copyMyWord);
-    strcpy(myword, copyMyWord);
-    printf("After Copy \n %s", copyMyWord);
+    // printf("Before Copy \n %s", copyMyWord);
+    // strcpy(myword, copyMyWord);
+    // printf("After Copy \n %s", copyMyWord);
 
-    //printf("Combined Word %s", strcat(combinedString, world));
-    // combinedString = (hello, world);
+    // printf("Combined Word %s", strcat(combinedString, world));
+    //  combinedString = (hello, world);
 
-    printf("Final Output %d %s", i, myword);
+    // printf("Final Output %d %s", i, myword);
+
+    // int *numpointer = NULL;
+    // int num = 4;
+    // numpointer = &num;
+    // printf("\n%d", numpointer[0]);
+    int num = 4;
+    square(&num);
+}
+void square(int const *x)
+{
+    printf("Square of number%d", (*x) * (*x));
 }

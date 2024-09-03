@@ -101,13 +101,13 @@ void printMessage(unsigned char *buffer, size_t fileSize)
 int main(int argc, char *argv[])
 {
     // Check if the filename is provided as a command-line argument
-    if (argc != 2)
-    {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
-        return 1;
-    }
+    // if (argc != 2)
+    // {
+    //     fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+    //     return 1;
+    // }
 
-    const char *filename = argv[1]; // Read the filename from command-line arguments
+    const char *filename = "data.bin"; // Read the filename from command-line arguments
     size_t fileSize = 0;
     unsigned char key = 0xAA; // XOR key used for transformation
 

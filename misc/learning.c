@@ -64,4 +64,13 @@ int main(int argc, char *argv[])
     // strcat -> first arg get conncated (much like strcpy)
     // strncat -> size safe alternativeA
     // strcmp -> Compare
+
+    /* Pointers */
+    /* Utilizing Pointers */
+    /* Pointer Arithmatic */
+    /* Pointer Dynamic Memory Alloc */
+
+    /* Structs*/
+    /* FileIO */
+    /* C Library */
 }

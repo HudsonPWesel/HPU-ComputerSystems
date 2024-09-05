@@ -53,8 +53,15 @@ int main(int argc, char *argv[])
     // int newArray[arrSize];
 
     /* Character Strings */
-    int sizeOfWord = 5;
-    char myString[sizeOfWord + 1]; // Allow space for null char
-    char word = {"Hello"};
-    char partialWord[40] = "To do";
+    // int sizeOfWord = 5;
+    // char myString[sizeOfWord + 1]; // Allow space for null char
+    // char word = {"Hello"};
+    // char partialWord[40] = "To do";
+
+    /* String functions*/
+    // strcpy -> Does NOT check for available size
+    // strncpy -> Allows you to specify max or auto does it
+    // strcat -> first arg get conncated (much like strcpy)
+    // strncat -> size safe alternativeA
+    // strcmp -> Compare
 }

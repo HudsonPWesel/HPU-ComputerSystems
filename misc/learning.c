@@ -40,4 +40,15 @@ int main(int argc, char *argv[])
     //     D = 40,
     // };
     // enum direction LEFT = L;
+
+    /* Using Bitwise */
+    //    &, |, ^, ~, <<, >>
+
+    /* Cast & sizeof */
+    // (type) (var)
+    // sizeof(varname) --> Number of bytes
+    /* Arrays*/
+    int numValues[10] = {0, 1, 2, 3, 9, 10};
+    int arrSize = 4;
+    int newArray[arrSize];
 }

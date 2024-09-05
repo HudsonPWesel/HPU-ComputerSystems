@@ -16,9 +16,28 @@ int main(int argc, char *argv[])
     // scanf("Enter Name %s", name);
     // printf("This is my name %s", name);
 
-    int num;
-    char name[10];
+    // int num;
+    // char name[10];
 
-    scanf("%d %s", &num, name);
-    printf("This is my name %d %s", num, name);
+    // scanf("%d %s", &num, name);
+    // printf("This is my name %d %s", num, name);
+
+    /* Using Enums */
+    enum color
+    {
+        B,
+        R,
+        G
+    };
+
+    enum color NEWCOLOR = B; // this is actually an int
+
+    enum direction
+    {
+        L = 10,
+        U = 20,
+        R = 30,
+        D = 40,
+    };
+    enum direction LEFT = L;
 }

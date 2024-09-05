@@ -1,11 +1,14 @@
 ### What I've learned about C
 
 - Preprocessor & preprocessor directives
+
 - printf
   - format specifers (%s, %d, %p, %c, %f)
+
 - scanf
   - Uses pointers to variables
-    - Returns  number of variables successfully read
+  - Returns number of variables successfully read
+  - Divided by newline and spaces
 
 
 ### Semester goals

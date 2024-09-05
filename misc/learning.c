@@ -48,7 +48,13 @@ int main(int argc, char *argv[])
     // (type) (var)
     // sizeof(varname) --> Number of bytes
     /* Arrays*/
-    int numValues[10] = {0, 1, 2, 3, 9, 10};
-    int arrSize = 4;
-    int newArray[arrSize];
+    // int numValues[10] = {0, 1, 2, 3, 9, 10};
+    // int arrSize = 4;
+    // int newArray[arrSize];
+
+    /* Character Strings */
+    int sizeOfWord = 5;
+    char myString[sizeOfWord + 1]; // Allow space for null char
+    char word = {"Hello"};
+    char partialWord[40] = "To do";
 }

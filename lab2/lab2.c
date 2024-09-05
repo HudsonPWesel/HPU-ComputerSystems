@@ -96,6 +96,11 @@ void printMessage(unsigned char *buffer, size_t fileSize)
     printf("\n====================================\n");
     printf("Final Message\n");
     printf("====================================\n");
+
+    for (size_t i = 0; i < fileSize; i++)
+    {
+        printf("%c", buffer[i]);
+    }
 }
 
 int main(int argc, char *argv[])

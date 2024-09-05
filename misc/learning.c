@@ -11,7 +11,11 @@ void square(int const *x);
 int main(int argc, char *argv[])
 {
     // Everything I've learned about so far
-    int i;
+    /* Using scanf & printf */
+    char name[10];
+    scanf("Enter Name %s", name);
+    printf("This is my name %s", name);
+    // using prin
     char myword[] = "Hello";
     char hello[] = "hello";
     char world[] = "world";
@@ -23,7 +27,6 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < strlen(myword); i++)
     {
-
         printf("EIOFJWJFE");
     }
 

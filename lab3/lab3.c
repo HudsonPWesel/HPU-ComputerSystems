@@ -95,7 +95,7 @@ int setBit(int num, int position)
     // {
     //     return num << (position - 1);
     // }
-    num | (1 << position);
+    return num | (1 << position);
 }
 
 // Clears the bit at 'position' in 'num' (sets it to 0).
@@ -131,7 +131,7 @@ void unpackBits(int packed, int *a, int *b)
     int startingFrontBitMask = 128;
     int endingBackBitMask = 8;
 
-    printf("Packed Value: %d \n", packed);
+    // printf("Packed Value: %d \n", packed);
 
     for (int i = 0; i < 4; i++)
     {
@@ -168,7 +168,7 @@ int circularRightShift(int num, int shift)
 int main()
 {
     int a = 12; // Example value
-    int b = 10; // Example value
+    int b = 2;  // Example value
 
     // Perform and display results for each bitwise operation
     // printf("AND Operation: %d\n", andOperation(a, b));
@@ -189,12 +189,9 @@ int main()
 
     // // Packing and unpacking
     int packed = packBits(a, b);
-    // printf("Packed Bits: %d\n", packed);
+    printf("Packed Value: %d\n", packed);
     int unpackedA, unpackedB;
     unpackBits(packed, &unpackedA, &unpackedB);
-    printf("TODO: PRINT ALL BITS \n");
-    printf("Unpacked Bits A: %d\n", unpackedA);
-    printf("Unpacked Bits B: %d\n", unpackedB);
 
     // // Circular shifts
     // printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));

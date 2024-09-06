@@ -11,15 +11,15 @@ int getSizeofBinary(int a)
     while (aCopy /= 2)
     {
         arrSize++;
-        printf("New arr size %d \n ", arrSize);
     }
     arrSize++;
+
+    printf("New arr size %d \n ", arrSize);
     return arrSize;
 }
 int *convertBinary(int a)
 {
     int arrSize = getSizeofBinary(a);
-    printf("%d", arrSize);
     int binary[arrSize];
 
     for (int i = 0; i < arrSize; i++)
@@ -29,12 +29,17 @@ int *convertBinary(int a)
         binary[i] = a % 2;
         a /= 2;
     }
+
     int j = 0;
     int finalBinary[arrSize];
     for (int i = arrSize; i > -1; i--)
     {
+        // Must reverse
         finalBinary[j] = binary[i];
+        printf("%d ", finalBinary[j]);
     }
+    printf("\n");
+
     return finalBinary;
 }
 int andOperation(int a, int b)
@@ -145,30 +150,37 @@ void unpackBits(int packed, int *a, int *b)
     }
     *a = *frontBits;
     *b = *backBits;
-
-    // TODO: Implement the unpack bits operation
 }
 
 // Performs a circular left shift on 'num' by 'shift' positions.
 // Returns the result of the circular left shift.
 int circularLeftShift(int num, int shift)
 {
-    // TODO: Implement the circular left shift operation
-    return 0;
+    // 0000 1111 15
+    // 1100 0011 195
+    // 1110 0001 1
+    unsigned mask = (1 << shift) - 1; // Mask found on google
+
+    int *bits = convertBinary(17);
+
+    // Algorithm to rotate array
+
+    return num << shift;
 }
 
 // Performs a circular right shift on 'num' by 'shift' positions.
 // Returns the result of the circular right shift.
 int circularRightShift(int num, int shift)
 {
+
     // TODO: Implement the circular right shift operation
     return 0;
 }
 
 int main()
 {
-    int a = 12; // Example value
-    int b = 2;  // Example value
+    int a = 8; // Example value
+    int b = 2; // Example value
 
     // Perform and display results for each bitwise operation
     // printf("AND Operation: %d\n", andOperation(a, b));
@@ -188,13 +200,13 @@ int main()
     // printf("Toggle Bit: %d\n", toggleBit(a, position));
 
     // // Packing and unpacking
-    int packed = packBits(a, b);
-    printf("Packed Value: %d\n", packed);
-    int unpackedA, unpackedB;
-    unpackBits(packed, &unpackedA, &unpackedB);
+    // int packed = packBits(a, b);
+    // printf("Packed Value: %d\n", packed);
+    // int unpackedA, unpackedB;
+    // unpackBits(packed, &unpackedA, &unpackedB);
 
-    // // Circular shifts
-    // printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
+    // Circular shifts
+    printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
     // printf("Circular Right Shift: %d\n", circularRightShift(a, shift));
 
     return 0;

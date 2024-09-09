@@ -157,20 +157,20 @@ void unpackBits(int packed, int *a, int *b)
 int circularLeftShift(int num, int shift)
 {
 
-    num = 110; // 0101 1110 (110)= 1110 0101 (229)
-    shift = 4;
-    int mask = 240;             // 1111
-    int maskedBits = 240 & num; // 96
+    // num = 110; // 0101 1110 (110)= 1110 0101 (229)
+    // shift = 4;
+    int mask = 240;              // 1111
+    int maskedBits = mask & num; // 96
     num = num << shift;
-    num = (maskedBits >> 4) | num;
+    num = (maskedBits >> shift) | num;
     printf("\n%d\n", num);
+
+    // Mask to keep the result within 8 bits
+    return num & 255;
 
     // NUM (110) & 240 -> 96 (1010)
     // x << SHIFT (Create space right (all zeros)
     // x = y >> 4 | x (shift them to the right and or with the first most 4 bits)
-    // int *bits = convertBinary(17);
-
-    return num << shift;
 }
 
 // Performs a circular right shift on 'num' by 'shift' positions.
@@ -178,7 +178,17 @@ int circularLeftShift(int num, int shift)
 int circularRightShift(int num, int shift)
 {
 
-    // TODO: Implement the circular right shift operation
+    // num = 110; // 0101 1110 (110)= 1110 0101 (229)
+    // shift = 4;
+    int mask = 15;               // 1111
+    int maskedBits = mask & num; // 96
+    num = num >> shift;
+    num = (maskedBits << shift) | num;
+    printf("\n%d\n", num);
+
+    // Mask to keep the result within 8 bits
+    return num & 255;
+
     return 0;
 }
 

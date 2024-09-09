@@ -156,14 +156,19 @@ void unpackBits(int packed, int *a, int *b)
 // Returns the result of the circular left shift.
 int circularLeftShift(int num, int shift)
 {
-    // 0000 1111 15
-    // 1100 0011 195
-    // 1110 0001 1
-    unsigned mask = (1 << shift) - 1; // Mask found on google
 
-    int *bits = convertBinary(17);
+    num = 110; // 0101 1110 (110)= 1110 0101 (229)
+    shift = 4;
+    int mask = 240;             // 1111
+    int maskedBits = 240 & num; // 96
+    num = num << shift;
+    num = (maskedBits >> 4) | num;
+    printf("\n%d\n", num);
 
-    // Algorithm to rotate array
+    // NUM (110) & 240 -> 96 (1010)
+    // x << SHIFT (Create space right (all zeros)
+    // x = y >> 4 | x (shift them to the right and or with the first most 4 bits)
+    // int *bits = convertBinary(17);
 
     return num << shift;
 }

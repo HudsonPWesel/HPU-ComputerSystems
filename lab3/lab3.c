@@ -133,14 +133,15 @@ void unpackBits(int packed, int *a, int *b)
     int backBits[4];
 
     int packedCopy = packed;
-    int startingFrontBitMask = 128;
-    int endingBackBitMask = 8;
+    int startingFrontBitMask = 128; // 1000
+    int endingBackBitMask = 8;      // 1000
 
     // printf("Packed Value: %d \n", packed);
 
     for (int i = 0; i < 4; i++)
     {
         // printf("%d \n", (packed & startingBitMask)); // 128
+        printf("VALUE: %d \n ", packed & startingFrontBitMask);
         frontBits[i] = packed & startingFrontBitMask ? 1 : 0;
         backBits[i] = packed & endingBackBitMask ? 1 : 0;
         printf("Front: %d ", (frontBits[i]));
@@ -215,13 +216,13 @@ int main()
     // printf("Toggle Bit: %d\n", toggleBit(a, position));
 
     // // Packing and unpacking
-    // int packed = packBits(a, b);
+    int packed = packBits(a, b);
     // printf("Packed Value: %d\n", packed);
-    // int unpackedA, unpackedB;
-    // unpackBits(packed, &unpackedA, &unpackedB);
+    int unpackedA, unpackedB = 0;
+    unpackBits(packed, &unpackedA, &unpackedB);
 
     // Circular shifts
-    printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
+    // printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
     // printf("Circular Right Shift: %d\n", circularRightShift(a, shift));
 
     return 0;

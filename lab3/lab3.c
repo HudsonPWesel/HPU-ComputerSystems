@@ -68,8 +68,7 @@ int xorOperation(int a, int b)
 // Returns the result of ~a.
 int notOperation(int a)
 {
-    return ~a;
-    return 0;
+    return 255 & ~a;
 }
 
 // Shifts the bits of 'num' to the left by 'shift' positions.
@@ -92,14 +91,8 @@ int rightShift(int num, int shift)
 int setBit(int num, int position)
 {
     // num++;
-    // if (position == 1)
-    // {
-    //     return num;
-    // }
-    // else
-    // {
-    //     return num << (position - 1);
-    // }
+    // if (position == 1) // { //     return num; // }
+    // else // { //     return num << (position - 1); // }
     return num | (1 << position);
 }
 
@@ -107,7 +100,7 @@ int setBit(int num, int position)
 // Returns the modified number.
 int clearBit(int num, int position)
 {
-    return num--;
+    return num & ~(1 << position);
 }
 
 // Toggles the bit at 'position' in 'num'.
@@ -122,6 +115,7 @@ int toggleBit(int num, int position)
 // Returns the packed 8-bit number.
 int packBits(int a, int b)
 {
+    printf("%d OR\n", (a << 4) | b);
     return (a << 4) + b;
 }
 
@@ -133,22 +127,22 @@ void unpackBits(int packed, int *a, int *b)
     int backBits[4];
 
     int packedCopy = packed;
-    int startingFrontBitMask = 128; // 1000
-    int endingBackBitMask = 8;      // 1000
-
-    // printf("Packed Value: %d \n", packed);
+    int startingFrontBitMask = 128;
+    int endingBackBitMask = 8;
 
     for (int i = 0; i < 4; i++)
+
     {
-        // printf("%d \n", (packed & startingBitMask)); // 128
-        printf("VALUE: %d \n ", packed & startingFrontBitMask);
         frontBits[i] = packed & startingFrontBitMask ? 1 : 0;
         backBits[i] = packed & endingBackBitMask ? 1 : 0;
+
         printf("Front: %d ", (frontBits[i]));
         printf("Back: %d \n", (backBits[i]));
+
         startingFrontBitMask = startingFrontBitMask >> 1;
         endingBackBitMask = endingBackBitMask >> 1;
     }
+
     *a = *frontBits;
     *b = *backBits;
 }
@@ -158,13 +152,11 @@ void unpackBits(int packed, int *a, int *b)
 int circularLeftShift(int num, int shift)
 {
 
-    // num = 110; // 0101 1110 (110)= 1110 0101 (229)
-    // shift = 4;
-    int mask = 240;              // 1111
-    int maskedBits = mask & num; // 96
+    int masks[] = {128, 192, 224, 240};
+    int mask = masks[shift - 1];
+    int maskedBits = mask & num;
     num = num << shift;
-    num = (maskedBits >> shift) | num;
-    printf("\n%d\n", num);
+    num = (maskedBits >> (8 - shift)) | num;
 
     // Mask to keep the result within 8 bits
     return num & 255;
@@ -179,18 +171,13 @@ int circularLeftShift(int num, int shift)
 int circularRightShift(int num, int shift)
 {
 
-    // num = 110; // 0101 1110 (110)= 1110 0101 (229)
-    // shift = 4;
-    int mask = 15;               // 1111
-    int maskedBits = mask & num; // 96
-    num = num >> shift;
-    num = (maskedBits << shift) | num;
-    printf("\n%d\n", num);
+    int masks[] = {128, 192, 224, 240};
+    int mask = masks[shift - 1];
+    int maskedBits = mask & num;
+    num = num << shift;
+    num = (maskedBits >> (8 - shift)) | num;
 
-    // Mask to keep the result within 8 bits
     return num & 255;
-
-    return 0;
 }
 
 int main()
@@ -198,32 +185,74 @@ int main()
     int a = 8; // Example value
     int b = 2; // Example value
 
-    // Perform and display results for each bitwise operation
-    // printf("AND Operation: %d\n", andOperation(a, b));
-    // printf("OR Operation: %d\n", orOperation(a, b));
-    // printf("XOR Operation: %d\n", xorOperation(a, b));
-    // printf("NOT Operation: %d\n", notOperation(a));
+    printf("OR Operation: %d\n", orOperation(a, b));
+    printf("XOR Operation: %d\n", xorOperation(a, b));
+    printf("NOT Operation: %d\n", notOperation(a));
 
     int shift = 2;
-    // printf("Left Shift: %d\n", leftShift(a, shift));
-    // printf("Right Shift: %d\n", rightShift(a, shift));
+    printf("Left Shift: %d\n", leftShift(a, shift));
+    printf("Right Shift: %d\n", rightShift(a, shift));
 
     // Bit manipulation examples
     int position = 2;
-    // printf("Set Bit: %d\n", setBit(a, position));
-    // printf("Clear Bit: %d\n", clearBit(a, position));
-    // 12 2
-    // printf("Toggle Bit: %d\n", toggleBit(a, position));
+    printf("Set Bit: %d\n", setBit(a, position));
+    printf("Clear Bit: %d\n", clearBit(a, position));
+    printf("Toggle Bit: %d\n", toggleBit(a, position));
 
-    // // Packing and unpacking
+    // Packing and unpacking
     int packed = packBits(a, b);
-    // printf("Packed Value: %d\n", packed);
+    printf("Packed Value: %d\n", packed);
     int unpackedA, unpackedB = 0;
     unpackBits(packed, &unpackedA, &unpackedB);
 
     // Circular shifts
-    // printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
-    // printf("Circular Right Shift: %d\n", circularRightShift(a, shift));
+    printf("Circular Left Shift: %d\n", circularLeftShift(a, shift));
+    printf("Circular Right Shift: %d\n", circularRightShift(a, shift));
 
     return 0;
 }
+
+/*
+Lab Questions:
+1. What is the difference between the bitwise AND (&) and the logical AND (&&)
+operators in C?
+- One returns a boolean value and one returns a logical value.
+2. If you perform the bitwise OR operation (|) on the numbers 5 (0101 in binary) and 3
+(0011 in binary), what is the result? Explain how you arrived at the answer.
+0101
+0011
+(0 | 0) = 0
+(1 | 0) = 1
+(0 | 1) = 1
+(1 | 1) = 1
+0111 = 7
+
+3. What does the bitwise NOT (~) operation do to the binary number 00001111?
+Flip bits (11110000)
+4. What would be the result of performing an XOR (^) operation on any number with
+itself, like a ^ a? Why? It will always be 0 because wherever there is a 1 in the first number there is a 1 in the second number which produces a zero. all else are zeros.
+0000 1111
+0000 1111
+
+5. If you have an 8-bit number 11010010, how can you clear the third bit (counting from
+the right, zero-indexed) using a bitwise operation?
+num & ~(1 << position);
+(1 << n) generates a binary number with a 1 at the nth position and zeros elsewhere. The bitwise NOT operator (~) flips all the bits, effectively creating a mask with a 1 at the nth position and zeros elsewhere. Then, the bitwise AND used to AND the original number with the mask, clearing the nth bit.
+-- given the value 6 and we want to clear the third bit --
+
+0000 0001 (1)
+0000 0100 (1 << 2)
+1111 1011 (NOT)
+
+    0000 1100 (6)
+AND 1111 1011
+    0000 1000 (4) Bit cleared!
+
+6. Why is the bitwise OR operation useful when you want to set specific bits in a
+number without changing the others?
+Because you can use it as a mask to filter for specific bits.
+
+7. Can you explain in your own words what a “bit mask” is and how it can be used in
+combination with bitwise operations?*/
+
+// A bit mask a binary value with specific bits turned on and when AND'd with a number, will mask to see if those specific bits are turned on in the specific number

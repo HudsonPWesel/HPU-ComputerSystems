@@ -115,8 +115,7 @@ int toggleBit(int num, int position)
 // Returns the packed 8-bit number.
 int packBits(int a, int b)
 {
-    printf("%d OR\n", (a << 4) | b);
-    return (a << 4) + b;
+    return (a << 4) | (b & 0xF);
 }
 
 // Unpacks an 8-bit number 'packed' into two 4-bit numbers.
@@ -151,12 +150,10 @@ void unpackBits(int packed, int *a, int *b)
 // Returns the result of the circular left shift.
 int circularLeftShift(int num, int shift)
 {
-
-    int masks[] = {128, 192, 224, 240};
-    int mask = masks[shift - 1];
-    int maskedBits = mask & num;
-    num = num << shift;
-    num = (maskedBits >> (8 - shift)) | num;
+    int size = sizeof(num) * 8;
+    int b = num << shift;
+    int c = num >> (size - shift);
+    printf("%d", b | c);
 
     // Mask to keep the result within 8 bits
     return num & 255;
@@ -171,13 +168,20 @@ int circularLeftShift(int num, int shift)
 int circularRightShift(int num, int shift)
 {
 
-    int masks[] = {128, 192, 224, 240};
-    int mask = masks[shift - 1];
-    int maskedBits = mask & num;
-    num = num << shift;
-    num = (maskedBits >> (8 - shift)) | num;
+    int size = sizeof(num) * 8;
+    int b = num >> shift;
+    int c = num << (size - shift);
+    printf("%d", b | c);
 
     return num & 255;
+    // int masks[] = {128, 192, 224, 240};
+    // int mask = masks[shift - 1];
+
+    // int maskedBits = mask & num;
+    // num = num << shift;
+    // num = (maskedBits >> (8 - shift)) | num;
+
+    // return num & 255;
 }
 
 int main()
